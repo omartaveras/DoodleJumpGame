@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     let platforms = [];
     let upTimeId;
     let downTimerId;
+    let isJumping = true;
 
     function createDoodler(){
         grid.appendChild(doodler);
@@ -53,6 +54,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     function jump(){
         clearInterval(downTimerId);
+        isJumping= true;
         upTimeId = setInterval(function(){
             doodlerBottomSpace += 20;
             doodler.style.bottom = doodlerBottomSpace + 'px';
@@ -64,6 +66,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     function fall(){
         clearInterval(upTimeId);
+        isJumping = false;
         downTimerId = setInterval(function(){
             doodlerBottomSpace -= 5;
             doodler.style.bottom = doodlerBottomSpace + 'px';
@@ -74,11 +77,21 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
 
     function gameOver(){
-        console.log('gameOver');
+        alert('GAME OVER');
         isGameOver = true;
         clearInterval(upTimeId);
         clearInterval(downTimerId);
 
+    }
+
+    function control(e){
+        if(e.key === "ArrowLeft"){
+            //move left
+        }else if(e.key === "ArrowRight"){
+            //move right
+        }else if(e.key === "ArrowUp"){
+            //moveStraight
+        }
     }
     
     function start(){
