@@ -78,8 +78,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 if(
                     (doodlerBottomSpace >= platform.bottom) &&
                     (doodlerBottomSpace <= (platform.bottom + 15)) &&
-                    ((doodlerLeftSpace + 60) >= platform.left) &&
-                    (doodlerLeftSpace <= (platform.letf + 85)) &&
+                    ((doodlerLeftSpace + 60) >= platform.left) && 
+                    (doodlerLeftSpace <= (platform.left + 85)) &&
                     !isJumping
                 ){
                     console.log('Landed');
@@ -120,5 +120,5 @@ document.addEventListener('DOMContentLoaded', ()=>{
     start();
 });
 
-//At end of ... 19:53 moving our platforms
+//At end of ... 36:00 moving our platforms
 //https://www.youtube.com/watch?v=8xPsg6yv7TU&t=555s
