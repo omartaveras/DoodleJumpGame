@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
     let isGameOver = false;
     let platformCount = 5;
     let platforms = [];
+    let upTimeId;
+    let downTimerId;
 
     function createDoodler(){
         grid.appendChild(doodler);
@@ -47,12 +49,33 @@ document.addEventListener('DOMContentLoaded', ()=>{
             });
         }
     }
+
+    function jump(){
+        clearInterval(downTimerId);
+        upTimeId = setInterval(function(){
+            doodlerBottomSpace += 20;
+            doodler.style.bottom = doodlerBottomSpace + 'px';
+            if(doodlerBottomSpace > 350){
+                fall();
+            }
+        }, 30);
+    }
+
+    function fall(){
+        clearInterval(upTimeId);
+        downTimerId = setInterval(function(){
+            doodlerBottomSpace -= 5;
+            doodler.style.bottom = doodlerBottomSpace + 'px';
+        }, 30);
+
+    }
     
     function start(){
         if(!isGameOver){
             createDoodler();
             createPlatforms();
-            movePlatforms();
+            setInterval(movePlatforms, 30);
+            jump();
         }
     }
     //attach to buttom
