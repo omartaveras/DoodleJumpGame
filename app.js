@@ -9,7 +9,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
     let platforms = [];
     let upTimeId;
     let downTimerId;
-    let isJumping = true;    
+    let isJumping = true;
+    let isGoingLeft = false;
+    let isGoingRight = false; 
+    let leftTimeId = true;
+    let rightTimeId = true;   
 
     function createDoodler(){
         grid.appendChild(doodler);
@@ -102,11 +106,35 @@ document.addEventListener('DOMContentLoaded', ()=>{
     function control(e){
         if(e.key === "ArrowLeft"){
             //move left
+            moveLeft();
         }else if(e.key === "ArrowRight"){
             //move right
         }else if(e.key === "ArrowUp"){
             //moveStraight
         }
+    }
+
+    function moveLeft(){
+        isGoingLeft = true;
+        leftTimeId = setInterval(function(){
+            if(doodlerLeftSpace >= 0){
+                doodlerLeftSpace -=5;
+                doodler.style.left = doodlerLeftSpace + 'px';
+            }else{
+                moveRight();
+            }
+            
+        }, 30);
+    }
+
+    function moveRight(){
+        isGoingRight = true;
+        rightTimeId = setInterval(function(){
+            if(doodlerLeftSpace <= 340){
+                doodlerLeftSpace += 50;
+                doodler.style.left = doodlerLeftSpace;
+            }
+        });
     }
     
     function start(){
@@ -115,6 +143,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             createDoodler();            
             setInterval(movePlatforms, 30);
             jump();
+            document.addEventListener('keyup', control);
         }
     }
     //attach to buttom
