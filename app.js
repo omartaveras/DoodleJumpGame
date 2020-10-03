@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         upTimeId = setInterval(function(){
             doodlerBottomSpace += 20;
             doodler.style.bottom = doodlerBottomSpace + 'px';
-            if(doodlerBottomSpace > 350){
+            if(doodlerBottomSpace > startPoint + 200){
                 fall();
             }
         }, 30);
@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     !isJumping
                 ){
                     console.log('Landed');
+                    startPoint = doodlerBottomSpace;
                     jump();
                 }
             })
