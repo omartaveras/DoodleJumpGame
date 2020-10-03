@@ -112,6 +112,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             moveRight();
         }else if(e.key === "ArrowUp"){
             //moveStraight
+            moveStraight();
         }
     }
 
@@ -147,6 +148,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
             }
         }, 30);
     }
+
+    function moveStraight(){
+        isGoingLeft = false;
+        isGoingRight = false;
+        clearInterval(rightTimeId);
+        clearInterval(leftTimeId);
+    }
     
     function start(){
         if(!isGameOver){
@@ -161,5 +169,5 @@ document.addEventListener('DOMContentLoaded', ()=>{
     start();
 });
 
-//At end of ... 36:00 moving our platforms
+//At end of ... 44:00 moving our platforms
 //https://www.youtube.com/watch?v=8xPsg6yv7TU&t=555s
