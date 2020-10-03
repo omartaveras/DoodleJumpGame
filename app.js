@@ -109,12 +109,17 @@ document.addEventListener('DOMContentLoaded', ()=>{
             moveLeft();
         }else if(e.key === "ArrowRight"){
             //move right
+            moveRight();
         }else if(e.key === "ArrowUp"){
             //moveStraight
         }
     }
 
     function moveLeft(){
+        if(isGoingLeft){
+            clearInterval(rightTimeId);
+            isGoingRight = false;
+        }
         isGoingLeft = true;
         leftTimeId = setInterval(function(){
             if(doodlerLeftSpace >= 0){
@@ -128,13 +133,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
 
     function moveRight(){
+        if(isGoingLeft){
+            clearInterval(leftTimeId);
+            isGoingLeft = false;
+        }
         isGoingRight = true;
         rightTimeId = setInterval(function(){
             if(doodlerLeftSpace <= 340){
-                doodlerLeftSpace += 50;
-                doodler.style.left = doodlerLeftSpace;
+                doodlerLeftSpace += 5;
+                doodler.style.left = doodlerLeftSpace + 'px';
+            }else{
+                moveLeft();
             }
-        });
+        }, 30);
     }
     
     function start(){
