@@ -58,7 +58,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     let firstPlatform = platforms[0].visual;
                     firstPlatform.classList.remove('platform');
                     platforms.shift();
-                    console.log(platforms)
+                    console.log(platforms);
+                    let newPlatform = new Platform(600);
+                    platforms.push(newPlatform);
                 }
             });
         }
