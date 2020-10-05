@@ -7,13 +7,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
     let isGameOver = false;
     let platformCount = 5;
     let platforms = [];
-    let upTimeId;
+    let upTimerId;
     let downTimerId;
     let isJumping = true;
     let isGoingLeft = false;
     let isGoingRight = false; 
-    let leftTimeId = true;
-    let rightTimeId = true;   
+    let leftTimerId = true;
+    let rightTimerId = true;
+    let score = 0;   
 
     function createDoodler(){
         grid.appendChild(doodler);
@@ -58,6 +59,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     let firstPlatform = platforms[0].visual;
                     firstPlatform.classList.remove('platform');
                     platforms.shift();
+                    score++;
                     console.log(platforms);
                     let newPlatform = new Platform(600);
                     platforms.push(newPlatform);
@@ -69,7 +71,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     function jump(){
         clearInterval(downTimerId);
         isJumping= true;
-        upTimeId = setInterval(function(){
+        upTimerId = setInterval(function(){
             doodlerBottomSpace += 20;
             doodler.style.bottom = doodlerBottomSpace + 'px';
             if(doodlerBottomSpace > startPoint + 200){
@@ -79,7 +81,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
 
     function fall(){
-        clearInterval(upTimeId);
+        clearInterval(upTimerId);
         isJumping = false;        
         downTimerId = setInterval(function(){
             doodlerBottomSpace -= 5;
@@ -107,8 +109,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
     function gameOver(){
         console.log('GAME OVER');
         isGameOver = true;
-        clearInterval(upTimeId);
+        while(grid.firstChild){
+            grid.removeChild(grid.firstChild);
+        }
+        grid.innerHTML = score;
+        clearInterval(upTimerId);
         clearInterval(downTimerId);
+        clearInterval(leftTimerId);
+        clearInterval(rightTimerId);
 
     }
 
