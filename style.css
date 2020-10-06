@@ -1,7 +1,7 @@
 .grid{
     width: 400px;
     height: 600px;
-    background-color: yellow;
+    background-color: gold;
     position: relative;
     font-size: 200px;
     text-align: center;
@@ -20,4 +20,8 @@
     height: 15px;
     background-color: green;
     position: absolute;
+}
+
+.btnJump{
+    padding: center;
 }
