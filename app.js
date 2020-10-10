@@ -100,10 +100,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     console.log('Landed');
                     startPoint = doodlerBottomSpace;
                     jump();
+                    console.log('start', startPoint);
+                    isJumping = true;
                 }
             })
 
-        }, 30);
+        }, 20);
     }
 
     function gameOver(){
@@ -121,6 +123,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
 
     function control(e){
+        doodler.style.bottom = doodlerBottomSpace + 'px';
         if(e.key === "ArrowLeft"){
             //move left
             moveLeft();
